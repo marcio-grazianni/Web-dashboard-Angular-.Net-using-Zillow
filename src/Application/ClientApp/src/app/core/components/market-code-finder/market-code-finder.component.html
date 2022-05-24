@@ -1,0 +1,61 @@
+<div #modal class="modal fade fixed-right" id="market-code-finder" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-vertical" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <!-- Close -->
+                <a href="javascript:;" class="close" (click)="dismiss()">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+
+                <!-- Image -->
+                <div class="text-center display-1">
+                    <img src="./assets/img/logo.svg" alt="..." class="w-25 mb-3">
+                </div>
+
+                <!-- Heading -->
+                <h2 class="text-center mb-2">
+                    AirDNA Market Code Finder
+                </h2>
+
+                <!-- Text -->
+                <p class="text-center mb-4">
+                    Please select the appropiate entry for <b>{{marketName}}</b>
+                </p>
+
+                <!-- Divider -->
+                <hr class="mb-4">
+
+
+
+                <ng-template [ngIf]="markets.length > 0">
+                    <div class="list-group list-group-flush">
+                        <div (click)="select(m)" class="list-group-item list-group-item-action btn" [ngClass]="{'active': isSelected(m)}" *ngFor="let m of markets">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h5 class="mb-2">
+                                        {{m.name}}
+                                    </h5>
+                                    <p class="small text-muted mb-0">
+                                        ID: {{m.city.id}}
+                                    </p>
+                                    <p class="small text-muted mb-0">
+                                        Code: {{m.city.code}}
+                                    </p>
+                                </div>
+                            </div> <!-- / .row -->
+                        </div>
+                    </div>
+                </ng-template>
+
+                
+
+            </div>
+            <div class="modal-footer border-0">
+                <button (click)="save()" class="btn btn-block btn-primary mt-auto" [disabled]="hasNoSelection">
+                    Save & Sync
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

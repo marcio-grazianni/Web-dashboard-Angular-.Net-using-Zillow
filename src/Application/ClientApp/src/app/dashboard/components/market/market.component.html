@@ -1,0 +1,50 @@
+<!--  -->
+
+<ng-template [ngIf]="hasData" [ngIfElse]="noMarketHistory">
+    <market-history #historyChart [city]="market" [history]="history"
+        (selectedBedroomsChange)="selectedBedroomsChanged($event)"></market-history>
+</ng-template>
+
+<ng-template #noMarketHistory>
+    <div class="header">
+        <div class="container-fluid">
+            <div class="header-body">
+                <div class="row align-items-end">
+                    <div class="col">
+                        <h6 class="header-pretitle">
+                            Market
+                        </h6>
+                        <h1 class="header-title">
+                            {{name}}
+                        </h1>
+                    </div>
+                    <div class="col-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<div class="container-fluid">
+    <ng-template [ngIf]="hasData">
+        <div class="row">
+            <div class="col-12 col-xl-8">
+                <!-- <market-revenue #revenueChart [history]="history" [bedrooms]="bedrooms"></market-revenue> -->
+                <market-summary [history]="history"></market-summary>
+            </div>
+
+            <div class="col-12 col-xl-4">
+                <market-yearly-revenue [history]="history"></market-yearly-revenue>
+            </div>
+        </div>
+    </ng-template>
+
+    <div class="row">
+        <div class="col-12">
+            <ng-template [ngIf]="market">
+                <listing-grid [cityId]="market.id"></listing-grid>
+            </ng-template>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+<div class="card card-fill">
+    <div class="card-header">
+        <h4 class="card-header-title">
+            Summary {{period}}
+        </h4>
+    </div>
+    <div class="card-body">
+        <ng-template [ngIf]="hasDataAvailable" [ngIfElse]="none">
+            <ng-container *ngFor="let type of roomTypes">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p class="text-center mb-4">
+                            Room type: 
+                            <span class="badge badge-soft-secondary">
+                              {{type.type}}
+                            </span>
+                          </p>
+                    </div>
+                </div>
+                <div  class="row no-gutters border-top border-bottom mb-4">
+                
+                    <div class="col-4 py-4 text-center">
+    
+                        <!-- Heading -->
+                        <h6 class="text-uppercase text-muted">
+                            ADR
+                        </h6>
+    
+                        <!-- Value -->
+                        <h2 class="mb-0">${{type.adr | number}} USD</h2>
+    
+                    </div>
+                    <div class="col-4 py-4 text-center border-left">
+    
+                        <!-- Heading -->
+                        <h6 class="text-uppercase text-muted">
+                            OCC
+                        </h6>
+    
+                        <!-- Value -->
+                        <h2 class="mb-0">{{type.occupancy | number}} %</h2>
+    
+                    </div>
+                    <div class="col-4 py-4 text-center border-left">
+    
+                        <!-- Heading -->
+                        <h6 class="text-uppercase text-muted">
+                            Revenue
+                        </h6>
+    
+                        <!-- Value -->
+                        <h2 class="mb-0">${{type.revenue | number}} USD</h2>
+    
+                    </div>
+                </div>
+            </ng-container>
+
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-center mb-4">
+                        Host Info
+                    </p>
+                </div>
+            </div>
+            <div  class="row no-gutters border-top border-bottom">
+                <div class="col-4 py-4 text-center">
+                    <h6 class="text-uppercase text-muted">
+                        Total
+                    </h6>
+                    <h2 class="mb-0">{{totalProperties | number}}</h2>
+                </div>
+                <div class="col-4 py-4 text-center border-left">
+                    <h6 class="text-uppercase text-muted">
+                        Single Host
+                    </h6>
+                    <h2 class="mb-0">{{singleHostProperties | number}}</h2>
+                </div>
+                <div class="col-4 py-4 text-center border-left">
+                    <h6 class="text-uppercase text-muted">
+                        Multi Host
+                    </h6>
+                    <h2 class="mb-0">{{multiHostProperties | number}}</h2>
+                </div>
+            </div>
+
+            <div  class="row no-gutters border-top border-bottom">
+                <div class="col-3 py-4 text-center">
+                    <h6 class="text-uppercase text-muted">
+                        Total
+                    </h6>
+                    <h2 class="mb-0">{{totalHosts | number}}</h2>
+                </div>
+                <div class="col-3 py-4 text-center border-left">
+                    <h6 class="text-uppercase text-muted">
+                        Super Hosts
+                    </h6>
+                    <h2 class="mb-0">{{superHosts | number}}</h2>
+                </div>
+                <div class="col-3 py-4 text-center border-left">
+                    <h6 class="text-uppercase text-muted">
+                        Single Unit
+                    </h6>
+                    <h2 class="mb-0">{{singleUnitHosts | number}}</h2>
+                </div>
+                <div class="col-3 py-4 text-center border-left">
+                    <h6 class="text-uppercase text-muted">
+                        Multi Unit
+                    </h6>
+                    <h2 class="mb-0">{{multiUnitHosts | number}}</h2>
+                </div>
+            </div>
+
+            <!-- <h4>Rental Activity</h4>
+
+            <h4>Rental Counts</h4> -->
+
+            
+        </ng-template>
+        <ng-template #none>
+            <div class="text-center">
+                <p>No data available.</p>
+            </div>
+        </ng-template>
+    </div>
+</div>

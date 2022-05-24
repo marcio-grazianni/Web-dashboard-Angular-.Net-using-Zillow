@@ -1,0 +1,57 @@
+<div #modal class="modal fade fixed-right" id="job-scheduler" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-vertical" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <!-- Close -->
+                <a href="javascript:;" class="close" (click)="dismiss()">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+
+                <!-- Image -->
+                <div class="text-center display-1">
+                    <img src="./assets/img/logo.svg" alt="..." class="w-25 mb-3">
+                </div>
+
+                <!-- Heading -->
+                <h2 class="text-center mb-2">
+                    Job Scheduler
+                </h2>
+
+                <!-- Text -->
+                <p class="text-center mb-4">
+                    Please select the job you wish to run.
+                </p>
+
+                <!-- Divider -->
+                <hr class="mb-4">
+
+
+                <form #itemForm="ngForm">
+                    <ng-template [ngIf]="request">
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <select id="type" name="type" class="custom-select" [(ngModel)]="request.type" (change)="useDefaultTitle()">
+                                <option *ngFor="let t of types" [value]="t.type">{{t.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Title</label>
+                            <textarea type="text" class="form-control" id="content" name="content" placeholder="Enter content" [(ngModel)]="request.title" rows="3"></textarea>
+                        </div>
+                    </ng-template>
+                </form>
+                
+
+                
+
+            </div>
+            <div class="modal-footer border-0">
+                <button (click)="save()" class="btn btn-block btn-primary mt-auto" [disabled]="!itemForm.valid">
+                    Run Now
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+{
+    "area_info": {
+        "geom": {
+            "code": {
+                "city": "williamsburg",
+                "country": "us",
+                "region": "01096",
+                "state": "massachusetts"
+            },
+            "id": {
+                "city": 67158,
+                "country": 1,
+                "region": 12341,
+                "state": 23
+            },
+            "name": {
+                "city": "Williamsburg",
+                "country": "United States",
+                "region": "01096",
+                "state": "Massachusetts"
+            }
+        }
+    },
+    "data": {
+        "calendar_months": {
+            "month": 12,
+            "room_type": {
+                "entire_place": {
+                    "adr": {
+                        "50th_percentile": 145.886253356934
+                    },
+                    "occ": {
+                        "50th_percentile": 0.513548387096774
+                    },
+                    "revenue": {
+                        "50th_percentile": 1195.75
+                    }
+                }
+            },
+            "year": 2018
+        },
+        "host_info": {
+            "host_properties": {
+                "multi_host_properties": 8,
+                "single_host_properties": 4,
+                "total_properties": 12
+            },
+            "hosts": {
+                "multi_unit_hosts": 3,
+                "single_unit_hosts": 4,
+                "superhosts": 6,
+                "total_hosts": 7
+            }
+        },
+        "rental_activity": {
+            "available": {
+                "1-3": 2,
+                "10-12": 2,
+                "4-6": 2,
+                "7-9": 8
+            },
+            "booked": {
+                "1-3": 10,
+                "10-12": 0,
+                "4-6": 3,
+                "7-9": 1
+            }
+        },
+        "rental_counts": {
+            "average": {
+                "accommodates": 5,
+                "bedrooms": 1.9
+            },
+            "counts": {
+                "entire_place": {
+                    "0": 1,
+                    "1": 3,
+                    "2": 2,
+                    "3": 2,
+                    "4": 1,
+                    "all": 9
+                },
+                "private_room": {
+                    "1": 2,
+                    "2": 1,
+                    "all": 3
+                }
+            }
+        }
+    },
+    "request_info": {
+        "currency": "usd",
+        "region_id": 12341,
+        "req_type": "geom"
+    }
+}

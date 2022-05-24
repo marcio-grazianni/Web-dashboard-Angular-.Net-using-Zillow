@@ -1,0 +1,138 @@
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-header-title">
+            Listings ({{listings.length}})
+        </h4>
+    </div>
+    <ng-template [ngIf]="listings.length > 0">
+        <div #listingList class="table-responsive mb-0">
+            <table class="table table-sm table-nowrap table-hover card-table">
+                <thead>
+                    <tr>
+                        <th>
+                            <a href="javascript:;" class="text-muted list-sort" data-sort="address">
+                                Address
+                            </a>
+                        </th>
+                        <th>
+                            <a href="javascript:;" class="text-muted list-sort" data-sort="status">
+                                Status
+                            </a>
+                        </th>
+                        <th>
+                            <a href="javascript:;" class="text-muted list-sort" data-sort="daysOnMarket">
+                                Days on Market
+                            </a>
+                        </th>
+                        <th>
+                            <a href="javascript:;" class="text-muted list-sort" data-sort="price">
+                                Price / Tax
+                            </a>
+                        </th>
+                        <th>
+                            <a href="javascript:;" class="text-muted list-sort" data-sort="predictedRevenue">
+                                Predicted Revenue
+                            </a>
+                        </th>
+                        <th>
+                            <a href="javascript:;" class="text-muted list-sort" data-sort="predVsPrice">
+                                Prediction / Price
+                            </a>
+                        </th>
+                        <th>
+                            <a href="javascript:;" class="text-muted list-sort" data-sort="highCapRate">
+                                High
+                            </a>
+                        </th>
+                        <th>
+                            <a href="javascript:;" class="text-muted list-sort" data-sort="middleCapRate">
+                                Middle
+                            </a>
+                        </th>
+                        <th>
+                            <a href="javascript:;" class="text-muted list-sort" data-sort="lowCapRate">
+                                Low
+                            </a>
+                        </th>
+                        <th>
+                            <a href="javascript:;" class="text-muted list-sort" data-sort="longTermRate">
+                                Long Term
+                            </a>
+                        </th>
+                        <th>
+                            <a href="javascript:;" class="text-muted list-sort" data-sort="bedrooms">
+                                Bedrooms
+                            </a>
+                        </th>
+                        <th>
+                            <a href="javascript:;" class="text-muted list-sort" data-sort="bathrooms">
+                                Bathrooms
+                            </a>
+                        </th>
+                        <th></th>
+                    </tr>
+                    
+                </thead>
+                <tbody class="list">
+                    <tr *ngFor="let l of listings">
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="ml-3">
+                                    <a [routerLink]="['/listing', l.id]" target="_blank"><h4 class="font-weight-normal mb-1 address">{{l.address.streetAddress}},
+                                        {{l.address.zipcode}}</h4></a>
+                                    <small class="text-muted">{{l.address.city}}, {{l.address.state}}</small>
+                                    <br />
+                                    <small class="text-muted">{{l.createdAt | date}}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <ng-template [ngIf]="l.isForSale" [ngIfElse]="notForSale">
+                                <span class="badge badge-soft-success status">For Sale</span>
+                            </ng-template>
+                            <ng-template #notForSale>
+                                <span class="badge badge-soft-danger status">Sold</span>
+                            </ng-template>
+                        </td>
+                        <td class="daysOnMarket">{{l.daysOnMarket}}</td>
+                        <td>
+    
+                            <div class="d-flex align-items-center">
+                                <div class="ml-3">
+                                    <h4 class="font-weight-normal mb-1 price">${{l.price | number}}</h4>
+                                    <small class="text-muted">Last Known Tax: ${{l.tax | number}}</small>
+                                    <ng-template [ngIf]="l.tax === 0">
+                                        <br>
+                                        <small  class="text-muted">Estimated Tax: ${{l.estimatedTax | number}}</small>
+                                    </ng-template>
+                                    
+                                </div>
+                            </div>
+                        </td>
+                        <td class="predictedRevenue">${{l.predictedRevenue | number}}</td>
+                        <td class="predVsPrice">{{l.predVsPrice | number}}%</td>
+                        <td class="highCapRate">{{l.highCapRate | number}}%</td>
+                        <td class="middleCapRate">{{l.middleCapRate | number}}%</td>
+                        <td class="lowCapRate">{{l.lowCapRate | number}}%</td>
+                        <td class="longTermRate">{{l.longTermRate | number}}%</td>
+                        <td class="bedrooms">{{l.description.bedrooms}}</td>
+                        <td class="bathrooms">{{l.description.bathrooms}}</td>
+                        <td class="text-right">
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-ellipses dropdown-toggle" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fe fe-more-vertical"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="javascript:;" (click)="delete(l)" class="dropdown-item">
+                                        Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,117 @@
+<div class="header">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-end">
+                <div class="col">
+                    <h6 class="header-pretitle">
+                        Admin
+                    </h6>
+
+                    <h1 class="header-title">
+                        Market Manager
+                    </h1>
+
+                </div>
+                <div class="col-auto">
+                </div>
+            </div> <!-- / .row -->
+        </div> <!-- / .header-body -->
+
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-header-title">
+                        <div *ngIf="loading" class="spinner-border spinner-border-sm mr-4" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        Markets ({{cities.length}})
+                    </h4>
+                </div>
+                <ng-template [ngIf]="cities.length > 0">
+                    <div #listingList class="table-responsive mb-0">
+                        <table class="table table-sm table-nowrap table-hover card-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <a href="javascript:;" class="text-muted list-sort" data-sort="address">
+                                            Name
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="javascript:;" class="text-muted list-sort" data-sort="address">
+                                            Cost
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="javascript:;" class="text-muted list-sort" data-sort="price">
+                                            Listings
+                                        </a>
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="list">
+                                <tr *ngFor="let c of cities">
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="ml-3">
+                                                <h4 class="font-weight-normal mb-1 address">{{c.name}}</h4>
+                                                <ng-template [ngIf]="c.needsAirDNAId" [ngIfElse]="hasAirDNA">
+                                                    <div class="badge badge-soft-danger">Needs AirDNA ID</div>
+                                                </ng-template>
+                                                <ng-template #hasAirDNA>
+                                                    <small class="text-muted"><i>{{c.code}}</i>,
+                                                        {{c.marketName}}</small>
+                                                </ng-template>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="ml-3">
+                                                <h4 class="font-weight-normal mb-1 address">
+                                                    ${{c.totalCost | number}} USD
+                                                </h4>
+                                                <small class="text-muted">OCC: {{c.totalOccupancyRequests}}, ADR:
+                                                    {{c.totalADRRequests}}, Revenue: {{c.totalRevenueRequests}}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="highCapRate">{{c.totalListings | number}}</td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a href="#" class="dropdown-ellipses dropdown-toggle" role="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fe fe-more-vertical"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ng-template [ngIf]="c.needsAirDNAId">
+                                                    <a href="javascript:;" (click)="getCodes(c)" class="dropdown-item">
+                                                        Get Codes
+                                                    </a>
+                                                </ng-template>
+                                                <a href="javascript:;" class="dropdown-item">
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+
+<market-code-finder [(market)]="city"></market-code-finder>

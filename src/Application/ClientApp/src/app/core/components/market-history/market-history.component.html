@@ -1,0 +1,39 @@
+<div class="header bg-dark pb-5">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-end">
+                <div class="col">
+                    <h6 class="header-pretitle text-secondary">
+                        2020
+                    </h6>
+
+                    <h1 class="header-title text-white">
+                        {{marketName}}
+                    </h1>
+
+                </div>
+                <div class="col-auto">
+                    <ul class="nav nav-tabs header-tabs">
+                        <li *ngFor="let option of options" class="nav-item" (click)="selectOption(option.value)">
+                            <a href="#" class="nav-link text-center" [ngClass]="{'active': isSelectedOption(option.value)}" data-toggle="tab">
+                                <h6 class="header-pretitle text-secondary">
+                                    {{option.text}} <i class="fas fa-bed"></i>
+                                </h6>
+                                <!-- <h3 class="text-white mb-0">
+                                    Room
+                                </h3> -->
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div> 
+
+        <div class="header-footer">
+            <div class="chart">
+                <canvas #chartCanvas class="chart-canvas"></canvas>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,73 @@
+<div class="header">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-end">
+                <div class="col">
+                    <h6 class="header-pretitle">
+                        Overview
+                    </h6>
+
+                    <h1 class="header-title">
+                        {{code}}
+                    </h1>
+
+                </div>
+                <div class="col-auto">
+                </div>
+            </div> <!-- / .row -->
+        </div> <!-- / .header-body -->
+
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div id="geochart" #chart></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    
+
+                    
+                    <ng-template [ngIf]="hasMarkets">
+                        <div class="list-group list-group-flush pt-4 my-n3">
+                            <div *ngFor="let market of markets" class="list-group-item">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <a [routerLink]="['/market', market.id]" class="avatar">
+                                            <div class="avatar-title rounded bg-white text-secondary">
+                                                <i class="fas fa-city"></i>
+                                            </div>
+                                          </a>
+                                    </div>
+                                    <div class="col ml-n2">
+    
+                                        <!-- Title -->
+                                        <h4 class="font-weight-normal mb-1">
+                                            <a [routerLink]="['/market', market.id]">{{market.name}}</a>
+                                        </h4>
+    
+                                        <!-- Text -->
+                                        <small class="text-muted">
+                                            {{market.totalListings | number}} listings
+                                        </small>
+    
+                                    </div>
+                                </div> <!-- / .row -->
+                            </div>
+                        </div>
+                    </ng-template>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

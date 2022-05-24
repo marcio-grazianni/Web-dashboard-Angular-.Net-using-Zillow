@@ -1,0 +1,98 @@
+<div class="header">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-end">
+                <div class="col">
+                    <h6 class="header-pretitle">
+                        Admin
+                    </h6>
+
+                    <h1 class="header-title">
+                        System Jobs
+                    </h1>
+
+                </div>
+                <div class="col-auto">
+                    <a href="#job-scheduler" class="btn btn-primary lift" data-toggle="modal">
+                        Schedule
+                    </a>
+                </div>
+            </div> <!-- / .row -->
+        </div> <!-- / .header-body -->
+
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-header-title">
+                        Latest ({{jobs.length}})
+                    </h4>
+                </div>
+                <ng-template [ngIf]="jobs.length > 0">
+                    <div #listingList class="table-responsive mb-0">
+                        <table class="table table-sm table-nowrap table-hover card-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <a href="javascript:;" class="text-muted list-sort" data-sort="address">
+                                            Title
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="javascript:;" class="text-muted list-sort" data-sort="status">
+                                            Status
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="javascript:;" class="text-muted list-sort" data-sort="daysOnMarket">
+                                            Start Time
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="javascript:;" class="text-muted list-sort" data-sort="price">
+                                            End Time
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <a href="javascript:;" class="text-muted list-sort" data-sort="highCapRate">
+                                            Message
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="list">
+                                <tr *ngFor="let j of jobs">
+                                    <td class="middleCapRate">{{j.title}}</td>
+                                    <td class="middleCapRate">
+                                        <ng-container [ngSwitch]="j.status">
+                                            <ng-container *ngSwitchCase="0">
+                                                <span class="badge badge-soft-primary status">Scheduled</span>
+                                            </ng-container>
+                                            <ng-container *ngSwitchCase="1">
+                                                <span class="badge badge-soft-warning status">Started</span>
+                                            </ng-container>
+                                            <ng-container *ngSwitchCase="2">
+                                                <span class="badge badge-soft-success status">Completed</span>
+                                            </ng-container>
+                                            <ng-container *ngSwitchCase="3">
+                                                <span class="badge badge-soft-danger status">Failed</span>
+                                            </ng-container>
+                                        </ng-container>
+                                    </td>
+                                    <td class="lowCapRate">{{j.startTime | date: 'medium'}}</td>
+                                    <td class="longTermRate">{{j.endTime | date: 'medium'}}</td>
+                                    <td class="bedrooms" [title]="j.message">{{j.message}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
+<job-scheduler (schedule)="schedule($event)"></job-scheduler>

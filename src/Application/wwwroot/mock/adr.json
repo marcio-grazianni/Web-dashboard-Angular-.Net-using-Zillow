@@ -1,0 +1,108 @@
+{
+    "area_info": {
+        "geom": {
+            "code": {
+                "city": "denver",
+                "country": "us",
+                "state": "colorado"
+            },
+            "id": {
+                "city": 59380,
+                "country": 1,
+                "state": 7
+            },
+            "name": {
+                "city": "Denver",
+                "country": "United States",
+                "state": "Colorado"
+            }
+        }
+    },
+    "data": {
+        "adr": {
+            "calendar_months": [
+                {
+                    "month": 1,
+                    "percentiles": {
+                        "25": 117.4,
+                        "50": 150.01,
+                        "75": 202.56,
+                        "90": 259.23
+                    },
+                    "year": 2017
+                },
+                {
+                    "month": 2,
+                    "percentiles": {
+                        "25": 114.04,
+                        "50": 144.11,
+                        "75": 191.86,
+                        "90": 233.83
+                    },
+                    "year": 2017
+                },
+                {
+                    "month": 3,
+                    "percentiles": {
+                        "25": 118.92,
+                        "50": 154.06,
+                        "75": 207.69,
+                        "90": 261.44
+                    },
+                    "year": 2017
+                },
+                {
+                    "month": 4,
+                    "percentiles": {
+                        "25": 122.43,
+                        "50": 158.49,
+                        "75": 211.6,
+                        "90": 259.6
+                    },
+                    "year": 2017
+                },
+                {
+                    "month": 5,
+                    "percentiles": {
+                        "25": 126.45,
+                        "50": 162.42,
+                        "75": 221.96,
+                        "90": 291.9
+                    },
+                    "year": 2017
+                },
+                {
+                    "month": 6,
+                    "percentiles": {
+                        "25": 130.57,
+                        "50": 169,
+                        "75": 233.52,
+                        "90": 320.35
+                    },
+                    "year": 2017
+                }
+            ]
+        }
+    },
+    "date_range": {
+        "end_date": "2017-06-30",
+        "start_date": "2017-01-01"
+    },
+    "request_info": {
+        "accommodates": [],
+        "bedrooms": [
+            2
+        ],
+        "city_id": 59380,
+        "currency": "usd",
+        "number_of_months": 6,
+        "percentiles": [],
+        "property_types": [],
+        "req_type": "geom",
+        "room_types": [
+            "entire_place"
+        ],
+        "start_month": 1,
+        "start_year": 2017
+    }
+}

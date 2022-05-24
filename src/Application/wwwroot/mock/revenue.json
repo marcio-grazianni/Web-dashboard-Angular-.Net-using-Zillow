@@ -1,0 +1,114 @@
+{
+    "area_info": {
+        "geom": {
+            "code": {
+                "city": "denver",
+                "country": "us",
+                "state": "colorado"
+            },
+            "id": {
+                "city": 59380,
+                "country": 1,
+                "state": 7
+            },
+            "name": {
+                "city": "Denver",
+                "country": "United States",
+                "state": "Colorado"
+            }
+        }
+    },
+    "data": {
+        "revenue": {
+            "calendar_months": [
+                {
+                    "month": 1,
+                    "percentiles": {
+                        "25": 768.06,
+                        "50": 1868.5,
+                        "75": 3043.79,
+                        "90": 4161.6
+                    },
+                    "total_revenue": 1308620,
+                    "year": 2017
+                },
+                {
+                    "month": 2,
+                    "percentiles": {
+                        "25": 922.63,
+                        "50": 2074.31,
+                        "75": 3048.87,
+                        "90": 4018.6
+                    },
+                    "total_revenue": 1105860,
+                    "year": 2017
+                },
+                {
+                    "month": 3,
+                    "percentiles": {
+                        "25": 1364.57,
+                        "50": 2565.17,
+                        "75": 3747.08,
+                        "90": 4850.85
+                    },
+                    "total_revenue": 1471150,
+                    "year": 2017
+                },
+                {
+                    "month": 4,
+                    "percentiles": {
+                        "25": 1500,
+                        "50": 2481.29,
+                        "75": 3652.42,
+                        "90": 4721.13
+                    },
+                    "total_revenue": 1584460,
+                    "year": 2017
+                },
+                {
+                    "month": 5,
+                    "percentiles": {
+                        "25": 1764,
+                        "50": 3110,
+                        "75": 4420,
+                        "90": 5788.3
+                    },
+                    "total_revenue": 2173520,
+                    "year": 2017
+                },
+                {
+                    "month": 6,
+                    "percentiles": {
+                        "25": 2116,
+                        "50": 3505,
+                        "75": 4940,
+                        "90": 6663.5
+                    },
+                    "total_revenue": 2755160,
+                    "year": 2017
+                }
+            ]
+        }
+    },
+    "date_range": {
+        "end_date": "2017-6-30",
+        "start_date": "2017-1-1"
+    },
+    "request_info": {
+        "accommodates": [],
+        "bedrooms": [
+            2
+        ],
+        "city_id": 59380,
+        "currency": "usd",
+        "number_of_months": 6,
+        "percentiles": [],
+        "property_types": [],
+        "req_type": "geom",
+        "room_types": [
+            "entire_place"
+        ],
+        "start_month": 1,
+        "start_year": 2017
+    }
+}

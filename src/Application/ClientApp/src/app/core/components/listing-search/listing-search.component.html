@@ -1,0 +1,51 @@
+<div class="modal fade" id="search-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-vertical" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <!-- Form -->
+                <form class="mb-4">
+                    <div class="input-group input-group-merge input-group-rounded">
+
+                        <!-- Input -->
+                        <input type="search" class="form-control form-control-prepended list-search" name="search"
+                            placeholder="Search" [(ngModel)]="query" (keyup)="search()" autocomplete="off">
+
+                        <!-- Prepend -->
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="fe fe-search"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+                <ng-template [ngIf]="items.length">
+                    <!-- List group -->
+                    <div class="my-n3">
+                        <div class="list-group list-group-flush list-group-focus list">
+                            <a *ngFor="let i of items" class="list-group-item" [routerLink]="['/listing', i.id]" target="_blank">
+                                <div class="row align-items-center">
+                                    <div class="col ml-n2">
+                                        <h4 class="text-body text-focus mb-1 name">
+                                            {{i.address.streetAddress}}, {{i.address.zipcode}}
+                                        </h4>
+
+                                        <!-- Time -->
+                                        <p class="small text-muted mb-0">
+                                            <span class="fe fe-book-open"></span> {{i.address.city}}, {{i.address.state}}
+                                        </p>
+
+                                    </div>
+                                </div> <!-- / .row -->
+                            </a>
+                        </div>
+                    </div>
+                </ng-template>
+
+
+            </div>
+        </div>
+    </div>
+</div>

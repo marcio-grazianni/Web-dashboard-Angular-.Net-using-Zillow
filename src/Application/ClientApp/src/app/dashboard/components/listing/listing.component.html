@@ -1,0 +1,489 @@
+<ng-template [ngIf]="!loading">
+    <div class="header">
+        <!-- <img [src]="coverPicture" class="header-img-top" alt="..."> -->
+        <div class="bg-cover" [style]="coverStyle">...</div>
+        <div class="container-fluid">
+
+            <div class="header-body mt-n5 mt-md-n6">
+                <div class="row align-items-end">
+                    <div class="col-auto">
+
+                        <!-- Avatar -->
+                        <div class="avatar avatar-xxl header-avatar-top">
+                            <img [src]="profilePicture" alt="..."
+                                class="avatar-img rounded-circle border border-4 border-body">
+                        </div>
+
+                    </div>
+                    <div class="col mb-3 ml-n3 ml-md-n2">
+
+                        <!-- Pretitle -->
+                        <h6 class="header-pretitle">
+                            {{listing.address.city}}, {{listing.address.state}}
+                        </h6>
+
+                        <!-- Title -->
+                        <h1 class="header-title">
+                            {{listing.address.streetAddress}}, {{listing.address.zipcode}}
+                        </h1>
+
+                    </div>
+                    <div class="col-12 col-md-auto mt-2 mt-md-0 mb-md-3">
+
+                        <ng-template [ngIf]="liked" [ngIfElse]="notLiked">
+                            <button (click)="dislike()" class="btn btn-primary d-block d-md-inline-block lift">
+                                Dislike
+                            </button>
+                        </ng-template>
+                        <ng-template #notLiked>
+                            <button (click)="like()" class="btn btn-outline-primary d-block d-md-inline-block lift">
+                                <i class="fe fe-heart"></i> Like
+                            </button>
+                        </ng-template>
+
+
+                    </div>
+                </div>
+            </div> <!-- / .header-body -->
+
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-6 col-xl">
+
+                <!-- Value  -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+
+                                <!-- Title -->
+                                <h6 class="text-uppercase text-muted mb-2">
+                                    Price
+                                </h6>
+
+                                <!-- Heading -->
+                                <span class="h2 mb-0">
+                                    ${{listing.price | number}}
+                                </span>
+
+                                <!-- <span class="badge badge-soft-success mt-n1">
+                                    +3.5%
+                                </span> -->
+                            </div>
+                            <div class="col-auto">
+
+                                <!-- Icon -->
+                                <span class="h2 fe fe-dollar-sign text-muted mb-0"></span>
+
+                            </div>
+                        </div> <!-- / .row -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-lg-6 col-xl">
+
+                <!-- Hours -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+
+                                <!-- Title -->
+                                <h6 class="text-uppercase text-muted mb-2">
+                                    Predicted Revenue
+                                </h6>
+
+                                <!-- Heading -->
+                                <span class="h2 mb-0">
+                                    ${{listing.predictedRevenue | number}}
+                                </span>
+
+                            </div>
+                            <div class="col-auto">
+
+                            </div>
+                        </div> <!-- / .row -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-lg-6 col-xl">
+
+                <!-- Exit -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+
+                                <!-- Title -->
+                                <h6 class="text-uppercase text-muted mb-2">
+                                    Prediction / Price
+                                </h6>
+
+                                <!-- Heading -->
+                                <span class="h2 mb-0">
+                                    {{listing.predVsPrice | number}} %
+                                </span>
+
+                            </div>
+                            <div class="col-auto">
+
+
+
+                            </div>
+                        </div> <!-- / .row -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-lg-6 col-xl">
+
+                <!-- Time -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col">
+
+                                <!-- Title -->
+                                <h6 class="text-uppercase text-muted mb-2">
+                                    Middle
+                                </h6>
+
+                                <!-- Heading -->
+                                <span class="h2 mb-0">
+                                    {{listing.middleCapRate | number}} %
+                                </span>
+
+                            </div>
+                            <div class="col-auto">
+
+                            </div>
+                        </div> <!-- / .row -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-xl-8">
+                <div class="card card-fill">
+                    <div class="card-body">
+
+                        <h3>Description</h3>
+                        <!-- Text -->
+                        <p class="mb-3">
+                            {{listing.details.description}}
+                        </p>
+
+                        <!-- Text -->
+                        <p class="mb-4">
+                            <a href="#!" class="badge badge-soft-primary">{{listing.details.brokerageName}}</a>
+                        </p>
+
+                        <ng-template [ngIf]="hasMortgageRates">
+                            <h3>Mortgage Calculator</h3>
+                            
+                            <div class="row">
+                                <div class="col-6">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="down">Down payment</label>
+                                            <input type="text" class="form-control" id="down" name="down" placeholder="Enter down payment" [(ngModel)]="mortgage.downPayment" (keyup)="estimateMonthlyPayment()">
+                                        </div>
+        
+                                        <div class="form-group">
+                                            <label for="length">Length of loan</label>
+                                            <select id="length" name="length" class="custom-select" [(ngModel)]="selectedLoanOptionId" (change)="estimateMonthlyPayment()">
+                                                <option *ngFor="let option of loanOptions" [value]="option.id">{{option.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+        
+                                        <div class="form-group">
+                                            <label for="rate">Interest rate</label>
+                                            <input type="text" class="form-control" id="rate" name="rate" placeholder="Enter rate" [(ngModel)]="mortgage.interestRate" disabled="disabled">
+                                        </div>
+                                    </form>
+        
+                                </div>
+                                <div class="col-6 d-flex align-items-center justify-content-center">
+                                    <div>
+                                        <h3>Your estimated monthly payment</h3>
+                                        <p>${{mortgage.estimatedMonthlyPayment | number}} USD</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- List group -->
+                        <div class="list-group list-group-flush my-n3">
+                            <div class="list-group-item">
+                                <div class="row align-items-center">
+                                    <div class="col">
+
+                                        <!-- Title -->
+                                        <h5 class="mb-0">
+                                            Long Term Rental
+                                        </h5>
+
+                                    </div>
+                                    <div class="col-auto">
+
+                                        <!-- Time -->
+                                        <time class="small text-muted" datetime="1988-10-24">
+                                            {{listing.longTermRate | number}}%
+                                        </time>
+
+                                    </div>
+                                </div> <!-- / .row -->
+                            </div>
+                            <div class="list-group-item">
+                                <div class="row align-items-center">
+                                    <div class="col">
+
+                                        <!-- Title -->
+                                        <h5 class="mb-0">
+                                            Rent ZEstimate
+                                        </h5>
+
+                                    </div>
+                                    <div class="col-auto">
+
+                                        <!-- Time -->
+                                        <time class="small text-muted" datetime="1988-10-24">
+                                            ${{listing.details.rentZestimate | number}}
+                                        </time>
+
+                                    </div>
+                                </div> <!-- / .row -->
+                            </div>
+                            <div class="list-group-item">
+                                <div class="row align-items-center">
+                                    <div class="col">
+
+                                        <!-- Title -->
+                                        <h5 class="mb-0">
+                                            ZEstimate
+                                        </h5>
+
+                                    </div>
+                                    <div class="col-auto">
+
+                                        <!-- Time -->
+                                        <time class="small text-muted" datetime="1988-10-24">
+                                            ${{listing.details.zestimate | number}}
+                                        </time>
+
+                                    </div>
+                                </div> <!-- / .row -->
+                            </div>
+                            <div class="list-group-item">
+                                <div class="row align-items-center">
+                                    <div class="col">
+
+                                        <!-- Title -->
+                                        <h5 class="mb-0">
+                                            Bedrooms
+                                        </h5>
+
+                                    </div>
+                                    <div class="col-auto">
+
+                                        <!-- Time -->
+                                        <time class="small text-muted" datetime="1988-10-24">
+                                            {{listing.details.bedrooms}}
+                                        </time>
+
+                                    </div>
+                                </div> <!-- / .row -->
+                            </div>
+                            <div class="list-group-item">
+                                <div class="row align-items-center">
+                                    <div class="col">
+
+                                        <!-- Title -->
+                                        <h5 class="mb-0">
+                                            Bathrooms
+                                        </h5>
+
+                                    </div>
+                                    <div class="col-auto">
+
+                                        <!-- Time -->
+                                        <time class="small text-muted" datetime="2018-10-28">
+                                            {{listing.details.bathrooms}}
+                                        </time>
+
+                                    </div>
+                                </div> <!-- / .row -->
+                            </div>
+                            <div class="list-group-item">
+                                <div class="row align-items-center">
+                                    <div class="col">
+
+                                        <!-- Title -->
+                                        <h5 class="mb-0">
+                                            Living Area
+                                        </h5>
+
+                                    </div>
+                                    <div class="col-auto">
+
+                                        <!-- Text -->
+                                        <small class="text-muted">
+                                            {{listing.details.livingArea | number}} sqft
+                                        </small>
+
+                                    </div>
+                                </div> <!-- / .row -->
+                            </div>
+                            <div class="list-group-item">
+                                <div class="row align-items-center">
+                                    <div class="col">
+
+                                        <!-- Title -->
+                                        <h5 class="mb-0">
+                                            Website
+                                        </h5>
+
+                                    </div>
+                                    <div class="col-auto">
+
+                                        <!-- Link -->
+                                        <a [href]="listing.details.url" target="_blank" class="small">
+                                            Zillow
+                                        </a>
+
+                                    </div>
+                                </div> <!-- / .row -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <ng-template [ngIf]="hasPriceHistory">
+                <div class="col-12 col-md-4">
+                    <div class="card card">
+                        <div class="card-header">
+                            <h4 class="card-header-title">
+                                Price History
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group list-group-flush list-group-activity my-n3">
+                                <div *ngFor="let item of priceHistory" class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <div class="avatar avatar-sm">
+                                                <div
+                                                    class="avatar-title font-size-lg bg-primary-soft rounded-circle text-success">
+                                                    <i class="fe fe-dollar-sign"></i>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col ml-n2">
+
+                                            <!-- Heading -->
+                                            <h5 class="mb-1">
+                                                {{item.event}}
+                                            </h5>
+
+                                            <!-- Text -->
+                                            <p class="small text-gray-700 mb-0">
+                                                Price: ${{item.price | number}}
+                                            </p>
+                                            <p class="small text-gray-700 mb-0">
+                                                Change Rate: {{item.priceChangeRate | number}}
+                                            </p>
+
+                                            <!-- Time -->
+                                            <small class="text-muted">
+                                                Source: {{item.source}}
+                                            </small>
+
+                                        </div>
+                                    </div> <!-- / .row -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template [ngIf]="hasTaxHistory">
+                <div class="col-12 col-md-4">
+                    <div class="card card">
+                        <div class="card-header">
+
+                            <!-- Title -->
+                            <h4 class="card-header-title">
+                                Tax History
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group list-group-flush list-group-activity my-n3">
+                                <div *ngFor="let item of taxHistory" class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <div class="avatar avatar-sm">
+                                                <div
+                                                    class="avatar-title font-size-lg bg-primary-soft rounded-circle text-primary">
+                                                    <i class="fe" [ngClass]="{'fe-trending-up' : item.taxIncreaseRate > 0, 'fe-trending-down': item.taxIncreaseRate < 0, 'fe-minus': item.taxIncreaseRate == 0}"></i>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col ml-n2">
+
+                                            <!-- Heading -->
+                                            <h5 class="mb-1">
+                                                {{item.taxIncreaseRate > 0 ? 'Increased' : 'Decreased'}}
+                                            </h5>
+
+                                            <!-- Text -->
+                                            <p class="small text-gray-700 mb-0">
+                                                Value: ${{item.value | number}}
+                                            </p>
+                                            <p class="small text-gray-700 mb-0">
+                                                Value Increase Rate: {{item.valueIncreaseRate | number}}
+                                            </p>
+                                            <p class="small text-gray-700 mb-0">
+                                                Tax Paid: ${{item.taxPaid | number}}
+                                            </p>
+                                            <p class="small text-gray-700 mb-0">
+                                                Tax Increase Rate: {{item.taxIncreaseRate | number}}
+                                            </p>
+
+                                            <!-- Time -->
+                                            <small class="text-muted">
+                                                Time: {{item.time}}
+                                            </small>
+
+                                        </div>
+                                    </div> <!-- / .row -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+
+    </div>
+</ng-template>
