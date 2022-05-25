@@ -8,7 +8,7 @@ import * as Chart from 'chart.js';
 export class AppComponent {
 
 	ngOnInit(): void {
-		google.charts.load('current', { packages: ['geochart'], mapsApiKey: 'AIzaSyAdZLKFKl8PK7f6jacZB0WFJBJrf2wJp4E' });
+		google.charts.load('current', { packages: ['geochart'], mapsApiKey: '' });
 		this.globalChartOptions();
 	}
 
