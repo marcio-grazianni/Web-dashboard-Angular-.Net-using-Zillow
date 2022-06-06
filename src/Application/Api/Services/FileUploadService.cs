@@ -25,19 +25,7 @@ namespace CDACommercial.PoC.Application.Api.Services
             List<string> filenames = new List<string>();
             foreach (var formFile in files)
             {
-                if (formFile.Length > 0)
-                {
-                    Guid g = Guid.NewGuid();
-                    string guidString = g.ToString("N");
-                    string originalFilename = ContentDispositionHeaderValue.Parse(formFile.ContentDisposition).FileName.Trim('"');
-                    string[] parts = originalFilename.Split(".");
-                    string filename = $"{guidString}.{parts[parts.Length - 1]}";
-                    using (var stream = System.IO.File.Create(Path.Combine(storage, filename)))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
-                    filenames.Add(filename);
-                }
+
             }
             return filenames;
         }
