@@ -29,19 +29,6 @@
 
                     </div>
                     <div class="col-12 col-md-auto mt-2 mt-md-0 mb-md-3">
-
-                        <ng-template [ngIf]="liked" [ngIfElse]="notLiked">
-                            <button (click)="dislike()" class="btn btn-primary d-block d-md-inline-block lift">
-                                Dislike
-                            </button>
-                        </ng-template>
-                        <ng-template #notLiked>
-                            <button (click)="like()" class="btn btn-outline-primary d-block d-md-inline-block lift">
-                                <i class="fe fe-heart"></i> Like
-                            </button>
-                        </ng-template>
-
-
                     </div>
                 </div>
             </div> <!-- / .header-body -->
