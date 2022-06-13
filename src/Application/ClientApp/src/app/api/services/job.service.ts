@@ -32,7 +32,15 @@ export class JobService extends BaseService {
 		});
 	}
 
-
+	public schedule(payload: any): Observable<Job> {
+		return new Observable<Job>(o => {
+			this.http.post<any>(`${this.apiUrl}/schedule`, payload).subscribe(response => {
+				let job = Job.fromJS(response);
+				o.next(job);
+				o.complete();
+			}, error => o.error(error))
+		});
+	}
 	public deleteApifyRun(id: number): Observable<void> {
 		return new Observable<void>(o => {
 			this.http.delete<void>(`${this.apiUrl}/apify/${id}`).subscribe(response => {
